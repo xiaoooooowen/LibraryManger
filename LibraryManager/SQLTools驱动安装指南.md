@@ -46,7 +46,7 @@
 3. **选择 "SQLite"**
 4. **输入/选择数据库文件路径**：
    ```
-   c:\Users\27970\Documents\trae_projects\demo\library_management_system_simple\library.db
+   c:\Users\27970\Documents\trae_projects\demo\LibraryManager\library.db
    ```
 5. **输入连接名称**：
    ```
@@ -87,7 +87,7 @@ SELECT category, COUNT(*) as 数量 FROM books GROUP BY category;
 **解决方案**：
 - 检查文件路径是否正确
 - 确保路径中没有中文字符或特殊符号
-- 使用绝对路径：`C:\Users\27970\Documents\trae_projects\demo\library_management_system_simple\library.db`
+- 使用绝对路径：`C:\Users\27970\Documents\trae_projects\demo\LibraryManager\library.db`
 
 ### 问题2：权限不足
 **错误信息**：`Permission denied`

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-简化版图书馆管理系统
+LibraryManager - 智慧图书馆管理系统
 使用Python内置sqlite3数据库，避免版本兼容性问题
 """
 

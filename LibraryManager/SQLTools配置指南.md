@@ -2,7 +2,7 @@
 
 ## 📋 数据库信息
 
-- **数据库文件位置**：`c:\Users\27970\Documents\trae_projects\demo\library_management_system_simple\library.db`
+- **数据库文件位置**：`c:\Users\27970\Documents\trae_projects\demo\LibraryManager\library.db`
 - **数据库类型**：SQLite 3
 - **文件大小**：24.5 KB
 - **创建时间**：2025/12/18 22:28
@@ -27,7 +27,7 @@
 1. 按 `Ctrl+Shift+P` 打开命令面板
 2. 输入 "SQLTools: Add New Connection"
 3. 选择 "SQLite"
-4. 选择数据库文件：`c:\Users\27970\Documents\trae_projects\demo\library_management_system_simple\library.db`
+4. 选择数据库文件：`c:\Users\27970\Documents\trae_projects\demo\LibraryManager\library.db`
 5. 输入连接名称：`图书馆管理系统`
 
 #### 方法二：通过SQLTools侧边栏
@@ -43,7 +43,7 @@
 
 ```
 连接类型：SQLite
-数据库文件：c:\Users\27970\Documents\trae_projects\demo\library_management_system_simple\library.db
+数据库文件：c:\Users\27970\Documents\trae_projects\demo\LibraryManager\library.db
 连接名称：图书馆管理系统
 描述：图书馆管理系统数据存储
 ```

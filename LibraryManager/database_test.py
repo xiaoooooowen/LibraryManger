@@ -207,7 +207,7 @@ if __name__ == "__main__":
         print("📝 建议配置步骤：")
         print("1. 打开VS Code")
         print("2. 安装SQLTools插件")
-        print("3. 添加SQLite连接，文件路径：c:\\Users\\27970\\Documents\\trae_projects\\demo\\library_management_system_simple\\library.db")
+        print("3. 添加SQLite连接，文件路径：c:\\Users\\27970\\Documents\\trae_projects\\demo\\LibraryManager\\library.db")
         print("4. 连接名称：图书馆管理系统")
     else:
         print("\n❌ 测试失败，请检查数据库文件")

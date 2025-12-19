@@ -95,24 +95,32 @@ def init_db():
     except Exception as e:
         print(f"创建管理员账户时出错: {e}")
     
-    # 添加示例图书数据
-    sample_books = [
-        ('978-7-111-12345-6', 'Python编程：从入门到实践', 'Eric Matthes', '编程', '适合初学者的Python编程指南', 5, 5),
-        ('978-7-111-23456-3', 'Flask Web开发', 'Miguel Grinberg', 'Web开发', 'Flask框架实战教程', 3, 3),
-        ('978-7-111-34567-0', '深入理解计算机系统', 'Randal E. Bryant', '计算机科学', '计算机系统经典教材', 2, 2),
-        ('978-7-111-45678-7', '算法导论', 'Thomas H. Cormen', '算法', '算法设计分析的权威教材', 1, 1),
-        ('978-7-111-56789-4', '设计模式：可复用面向对象软件的基础', 'Erich Gamma', '软件工程', '经典设计模式书籍', 2, 2),
-    ]
+    # 检查是否已有示例图书数据，如果没有才添加
+    existing_books_count = db.execute('SELECT COUNT(*) FROM books').fetchone()[0]
     
-    for book_data in sample_books:
-        try:
-            db.execute('''
-                INSERT OR IGNORE INTO books (isbn, title, author, category, description, total_copies, available_copies)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            ''', book_data)
-            db.commit()
-        except Exception as e:
-            print(f"添加图书时出错: {e}")
+    if existing_books_count == 0:
+        # 添加示例图书数据
+        sample_books = [
+            ('978-7-111-12345-6', 'Python编程：从入门到实践', 'Eric Matthes', '编程', '适合初学者的Python编程指南', 5, 5),
+            ('978-7-111-23456-3', 'Flask Web开发', 'Miguel Grinberg', 'Web开发', 'Flask框架实战教程', 3, 3),
+            ('978-7-111-34567-0', '深入理解计算机系统', 'Randal E. Bryant', '计算机科学', '计算机系统经典教材', 2, 2),
+            ('978-7-111-45678-7', '算法导论', 'Thomas H. Cormen', '算法', '算法设计分析的权威教材', 1, 1),
+            ('978-7-111-56789-4', '设计模式：可复用面向对象软件的基础', 'Erich Gamma', '软件工程', '经典设计模式书籍', 2, 2),
+        ]
+        
+        for book_data in sample_books:
+            try:
+                db.execute('''
+                    INSERT INTO books (isbn, title, author, category, description, total_copies, available_copies)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                ''', book_data)
+                db.commit()
+            except Exception as e:
+                print(f"添加图书时出错: {e}")
+        
+        print("示例图书数据已初始化")
+    else:
+        print(f"数据库中已有 {existing_books_count} 本图书，跳过示例数据初始化")
 
 def hash_password(password):
     """密码哈希"""

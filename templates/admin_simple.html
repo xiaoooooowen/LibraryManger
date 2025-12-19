@@ -219,7 +219,7 @@
                                     <span class="badge bg-success">已归还</span>
                                 {% else %}
                                     <span class="badge bg-warning">借阅中</span>
-                                    {% if loan.due_date < current_date %}
+                                    {% if loan.due_date_dt < current_date %}
                                         <span class="badge bg-danger">已逾期</span>
                                     {% endif %}
                                 {% endif %}

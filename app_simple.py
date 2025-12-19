@@ -462,18 +462,28 @@ def admin():
     overdue_loans = db.execute('''
         SELECT COUNT(*) as count FROM loans 
         WHERE is_returned = 0 AND due_date < ?
-    ''', (datetime.now(),)).fetchone()['count']
+    ''', (datetime.now().strftime('%Y-%m-%d %H:%M:%S'),)).fetchone()['count']
     
     # 所有数据
     books = db.execute('SELECT * FROM books ORDER BY created_at DESC').fetchall()
     users = db.execute('SELECT * FROM users ORDER BY created_at DESC').fetchall()
-    loans = db.execute('''
+    loans_raw = db.execute('''
         SELECT l.*, u.username, b.title 
         FROM loans l 
         JOIN users u ON l.user_id = u.id 
         JOIN books b ON l.book_id = b.id 
         ORDER BY l.loan_date DESC
     ''').fetchall()
+    
+    # 预处理借阅数据，转换日期格式
+    loans = []
+    current_date = datetime.now()
+    for loan in loans_raw:
+        loan_dict = dict(loan)
+        # 转换due_date为datetime对象进行比较
+        if loan_dict['due_date']:
+            loan_dict['due_date_dt'] = datetime.strptime(loan_dict['due_date'], '%Y-%m-%d %H:%M:%S')
+        loans.append(loan_dict)
     
     return render_template('admin_simple.html',
                          total_books=total_books,
@@ -482,7 +492,8 @@ def admin():
                          overdue_loans=overdue_loans,
                          books=books,
                          users=users,
-                         loans=loans)
+                         loans=loans,
+                         current_date=current_date)
 
 if __name__ == '__main__':
     # 初始化数据库
